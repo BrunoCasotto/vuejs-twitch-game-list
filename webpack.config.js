@@ -22,6 +22,9 @@ module.exports = {
   resolve: {
     alias: {
       _components: path.join(app_path, 'components'),
+      _services: path.join(app_path, 'services'),
+      _helpers: path.join(app_path, 'helpers'),
+      _routes: path.join(app_path, 'routes'),
       _js: path.join(app_path),
       _sass: path.join(sass_path),
       _npm: path.join(__dirname, 'node_modules'),
