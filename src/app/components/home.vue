@@ -79,10 +79,19 @@
   .home {
     padding-top: 10px;
 
+    @media screen and(min-width: $screen-md) {
+      padding-top: 20px;
+      max-width: $screen-md;
+      margin: 0 auto;
+    }
+
     &__search {
       height: 40px;
       width: 100%;
       margin-bottom: 10px;
+      @media screen and(min-width: $screen-sm) {
+        max-width: 600px;
+      }
 
       &__input {
         flex: 1;
@@ -110,6 +119,10 @@
     }
 
     &__filters {
+      @media screen and(min-width: $screen-mc) {
+        max-width: 300px;
+      }
+
       &__button {
         margin-right: 5px;
         height: 40px;

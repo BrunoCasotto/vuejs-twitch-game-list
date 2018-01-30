@@ -1,12 +1,11 @@
 <template>
-  <section class="container-fluid grid">
-    <div
+  <section class="row grid">
+    <game
       v-for="item in games"
       v-bind:todo="item"
       v-bind:key="item.game._id"
-    >
-      <game :game=item.game></game>
-    </div>
+      :game="item.game"
+    ></game>
   </section>
 </template>
 
