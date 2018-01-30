@@ -4,9 +4,9 @@ const webpack = require('webpack')
 
 const eslint = require('./.eslintrc.json')
 
-const app_path = path.resolve(__dirname, 'src', 'app')
+const app_path = path.resolve(__dirname, '..', 'src', 'app')
 
-const sass_path = path.resolve(__dirname, 'src', 'assets', 'sass')
+const sass_path = path.resolve(__dirname, '..', 'src', 'assets', 'sass')
 
 module.exports = {
   entry: [
@@ -14,22 +14,13 @@ module.exports = {
     path.join(app_path, 'main.js')
   ],
   output: {
-    path: path.join(__dirname, 'dist', 'js'),
-    publicPath: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, '..', 'dist', 'js'),
+    publicPath: path.join(__dirname, '..', 'dist'),
     filename: 'bundled.js'
   },
   devtool: 'source-map',
   resolve: {
-    alias: {
-      _components: path.join(app_path, 'components'),
-      _services: path.join(app_path, 'services'),
-      _helpers: path.join(app_path, 'helpers'),
-      _routes: path.join(app_path, 'routes'),
-      _js: path.join(app_path),
-      _sass: path.join(sass_path),
-      _npm: path.join(__dirname, 'node_modules'),
-      'vue$': path.join(__dirname, 'node_modules', 'vue/dist/vue.common.js')
-    }
+    alias: require('./aliases')
   },
   module: {
     rules: [
