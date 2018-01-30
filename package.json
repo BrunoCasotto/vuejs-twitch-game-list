@@ -1,0 +1,80 @@
+{
+  "name": "games_list_sample",
+  "version": "1.0.0",
+  "description": "A simple games list.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run watch:dev\" \"npm run build:dev\"",
+    "watch:dev": "webpack-dev-server --inline --hot --history-api-fallback",
+    "build:dev": "webpack --watch",
+    "start": "node index.js",
+    "build:prod": "webpack -p",
+    "heroku-postbuild": "npm run build:prod",
+    "lint:fix": "standard --env mocha --fix",
+    "test": "mocha-webpack test --recursive --require test/.setup.js"
+  },
+  "engines": {
+    "node": "~6.0.0",
+    "npm": "~4.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrunoCasotto/games_list_sample"
+  },
+  "keywords": [
+    "javascript",
+    "sample",
+    "games",
+    "vue",
+    "list"
+  ],
+  "author": "Bruno Casotto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrunoCasotto/games_list_sample/issues"
+  },
+  "homepage": "https://github.com/BrunoCasotto/games_list_sample#readme",
+  "devDependencies": {
+    "avoriaz": "^1.14.0",
+    "babel-eslint": "^7.1.1",
+    "babel-preset-stage-2": "^6.18.0",
+    "chai": "^4.0.0",
+    "concurrently": "^2.2.0",
+    "deepmerge": "^1.4.3",
+    "jsdom": "^11.0.0",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^3.2.0",
+    "mocha-webpack": "next",
+    "sinon": "^2.3.4",
+    "standard": "^10.0.2",
+    "webpack-dev-server": "^2.3.0",
+    "webpack-node-externals": "^1.6.0"
+  },
+  "dependencies": {
+    "autoprefixer": "^6.7.3",
+    "axios": "^0.12.0",
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-runtime": "^6.9.2",
+    "css-loader": "^0.23.1",
+    "es6-promise": "^3.2.1",
+    "jquery": "2.2.4",
+    "json-query": "^2.2.0",
+    "node-sass": "^4.5.3",
+    "path": "^0.12.7",
+    "sass-loader": "^4.0.0",
+    "style-loader": "^0.13.1",
+    "vue": "^2.1.10",
+    "vue-hot-reload-api": "^1.3.3",
+    "vue-html-loader": "^1.0.0",
+    "vue-loader": "^10.3.0",
+    "vue-router": "^0.7.13",
+    "vue-style-loader": "^1.0.0",
+    "vue-template-compiler": "^2.1.10",
+    "vuefire": "^1.1.1",
+    "vuex": "^2.1.2",
+    "webpack": "2.2.1"
+  }
+}
