@@ -53,8 +53,6 @@
     data() {
       return {
         searchInput: '',
-        games: [],
-        gamesTemp: [],
         offset: 0,
         perView: 10,
         loader: false,
@@ -62,8 +60,18 @@
       }
     },
     mounted() {
-      this.fetchGamesList()
       this.initObserveScroll()
+
+      //call only the games has not loaded before
+      //To offline navigation
+      if(!this.games.length) {
+        this.fetchGamesList()
+      }
+
+      if(this.searchInputState != '') {
+        this.searchInput = this.searchInputState
+        this.sortByWord()
+      }
     },
     components: {
       Grid,
@@ -80,7 +88,7 @@
         .then((result) => {
           if(result.data) {
             this.toggleLoader();
-            this.games = Normalize.normalizeGameArray(result.data.top)
+            this.$store.dispatch('updateGameList', Normalize.normalizeGameArray(result.data.top))
           }
 
         }).catch((error) => {
@@ -94,7 +102,7 @@
           if(result.data) {
             this.toggleLoader();
             let newGames = Normalize.normalizeGameArray(result.data.top)
-            this.games = Array.prototype.concat(this.games, newGames)
+            this.$store.dispatch('updateGameList', Array.prototype.concat(this.games, newGames))
           }
 
         }).catch((error) => {
@@ -112,23 +120,35 @@
         })
       },
       sortGames(criteria) {
-        this.games = this.games.sort((a, b) => b[criteria] - a[criteria])
+        this.$store.dispatch('updateGameList', this.games.sort((a, b) => b[criteria] - a[criteria]))
       },
       sortByWord() {
         if(this.searchInput === '' && this.gamesTemp.length) {
-          this.games = this.gamesTemp
+          this.$store.dispatch('updateGameList', this.gamesTemp)
         }
 
         if(!this.gamesTemp.length) {
-          this.gamesTemp = this.games
+          this.$store.dispatch('updateGameTemp', this.games)
         }
 
-        this.games = Helpers.filterName(this.searchInput, this.gamesTemp)
+        this.$store.dispatch('updateGameList', Helpers.filterName(this.searchInput, this.gamesTemp))
       }
     },
     watch: {
       searchInput() {
+        this.$store.dispatch('updateSearch', this.searchInput)
         this.sortByWord()
+      }
+    },
+    computed: {
+      searchInputState: function () {
+       return this.$store.state.Search.data
+      },
+      games: function () {
+       return this.$store.state.Game.list
+      },
+      gamesTemp: function () {
+       return this.$store.state.Game.temp
       }
     }
   }

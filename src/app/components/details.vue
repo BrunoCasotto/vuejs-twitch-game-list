@@ -5,7 +5,7 @@
       <h3 class="details__nav__title">{{game.name}}</h3>
     </div>
     <div class="row details__content" :style="'background-image: url('+game.image+');' ">
-      <div class="col details__content__info text-white">"
+      <div class="col details__content__info text-white">
         <h4 class="text-center">{{game.name}}</h4>
         <h6 class="text-center"><span>{{game.viewers}}</span> visualizações</h6>
         <h6 class="text-center"><span>{{game.channels}}</span> canais ao vivo</h6>

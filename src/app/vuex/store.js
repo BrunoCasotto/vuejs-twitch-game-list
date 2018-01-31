@@ -6,9 +6,12 @@ Vue.use(Vuex)
 
 import Game from '_vuex/modules/game'
 
+import Search from '_vuex/modules/search'
+
 const store = new Vuex.Store({
   modules: {
-    Game
+    Game,
+    Search
   }
 })
 

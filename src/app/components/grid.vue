@@ -1,9 +1,8 @@
 <template>
   <section class="row grid">
     <game
-      v-for="game in games"
-      v-bind:todo="game"
-      v-bind:key="game._id"
+      v-for="(game, index) in games"
+      v-bind:key="index"
       :game="game"
     ></game>
   </section>
