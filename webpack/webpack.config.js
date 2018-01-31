@@ -15,10 +15,8 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, '..', 'dist', 'js'),
-    publicPath: path.join(__dirname, '..', 'dist'),
-    filename: 'bundled.js'
+    publicPath: path.join(__dirname, '..', 'dist')
   },
-  devtool: 'source-map',
   resolve: {
     alias: require('./aliases')
   },
@@ -43,10 +41,12 @@ module.exports = {
       },
       {
         test: /\.scss$/,
+        exclude: /node_modules/,
         loader: 'style-loader!css-loader!sass-loader'
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
+        exclude: /node_modules/,
         loader: 'file-loader?name=dist/fonts/[name].[ext]'
       }
     ]

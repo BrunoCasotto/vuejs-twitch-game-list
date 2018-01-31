@@ -169,9 +169,6 @@
       height: 40px;
       width: 100%;
       margin-bottom: 10px;
-      @media screen and(min-width: $screen-sm) {
-        max-width: 600px;
-      }
 
       &__input {
         flex: 1;
