@@ -24,7 +24,7 @@ export default new class GamesService {
   /**
    * @return Object of top games list 
    */
-  getList () {
+  getList (offset=0) {
     return axios({
       url: `${API_URL}`,
       method: 'get',
@@ -32,7 +32,8 @@ export default new class GamesService {
         'Client-ID': CLIENT_ID
       },
       params: {
-        limit: this.limit
+        limit: this.limit,
+        offset: offset
       }
     })
   }

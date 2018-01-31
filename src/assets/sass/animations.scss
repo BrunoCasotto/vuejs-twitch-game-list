@@ -1,0 +1,17 @@
+
+@keyframes spinner {
+  0% { transform:rotate(0deg); }
+  100% { transform:rotate(360deg); }
+}
+
+
+@keyframes load {
+  0% { left: 0; height: 30px; width: 15px }
+  50% { height: 8px; width: 40px }
+  100% { left: 235px; height: 30px; width: 15px}
+}
+
+@keyframes color {
+  0% { background-color: white; }
+  100% { background-color: gray;}
+}

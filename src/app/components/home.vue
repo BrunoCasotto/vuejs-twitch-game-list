@@ -32,38 +32,83 @@
 
   <grid :games="games"></grid>
 
+  <loader :active="loader"></loader>
+
   </div>
 </template>
 <script>
   import GamesService from '_services/games.js'
   import Normalize from '_helpers/normalize.js'
   import Grid from '_components/grid.vue'
+  import Loader from '_components/loader.vue'
 
   export default {
     name: 'Home',
     data() {
       return {
         searchInput: '',
-        games: []
+        games: [],
+        offset: 0,
+        perView: 10,
+        loader: false
       }
     },
     mounted() {
       this.fetchGamesList()
+      this.initObserveScroll()
     },
     components: {
-      Grid
+      Grid,
+      Loader
     },
     methods: {
+      toggleLoader() {
+        this.loader = !this.loader;
+      },
       fetchGamesList() {
+        this.toggleLoader();
+
         GamesService.getList()
         .then((result) => {
           if(result.data) {
+            this.toggleLoader();
             this.games = Normalize.normalizeGameArray(result.data.top)
           }
 
         }).catch((error) => {
+          this.toggleLoader();
           console.log(error)
         })
+      },
+      incrementGamesList() {
+        this.toggleLoader();
+        GamesService.getList(this.games.length)
+        .then((result) => {
+          if(result.data) {
+            this.toggleLoader();
+            let newGames = Normalize.normalizeGameArray(result.data.top)
+            this.games = Array.prototype.concat(this.games, newGames)
+          }
+
+        }).catch((error) => {
+          this.toggleLoader();
+          console.log(error)
+        })
+      },
+      initObserveScroll() {
+        window.addEventListener('scroll', (e) => {
+          let scrolled = document.documentElement.scrollTop
+          let endOfPage = document.body.offsetHeight - window.innerHeight
+
+          if (scrolled >= endOfPage) {
+            this.incrementGamesList()
+          }
+        })
+      }
+    },
+    watch: {
+      searchInput() {
+        console.log(this.searchInput)
       }
     }
   }
