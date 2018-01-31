@@ -12,6 +12,7 @@
       <button
         class="btn fa fa-search home__search__button"
         type="button"
+        @click="sortByWord"
       ></button>
     </div>
   </section>
@@ -22,11 +23,15 @@
     </div>
 
     <div class="home__filters__button">
-      <button type="button" class="btn btn-info">Popularidade</button>
+      <button @click="sortGames('popularity')" type="button" class="btn btn-info">
+        Popularidade
+      </button>
     </div>
 
     <div class="home__filters__button">
-      <button type="button" class="btn btn-info">Visualizações</button>
+      <button @click="sortGames('viewers')" type="button" class="btn btn-info">
+        Visualizações
+      </button>
     </div>
   </section>
 
@@ -39,6 +44,7 @@
 <script>
   import GamesService from '_services/games.js'
   import Normalize from '_helpers/normalize.js'
+  import Helpers from '_helpers/helpers.js'
   import Grid from '_components/grid.vue'
   import Loader from '_components/loader.vue'
 
@@ -48,9 +54,11 @@
       return {
         searchInput: '',
         games: [],
+        gamesTemp: [],
         offset: 0,
         perView: 10,
-        loader: false
+        loader: false,
+        activeFilter: null
       }
     },
     mounted() {
@@ -77,7 +85,6 @@
 
         }).catch((error) => {
           this.toggleLoader();
-          console.log(error)
         })
       },
       incrementGamesList() {
@@ -104,11 +111,25 @@
             this.incrementGamesList()
           }
         })
+      },
+      sortGames(criteria) {
+        this.games = this.games.sort((a, b) => b[criteria] - a[criteria])
+      },
+      sortByWord() {
+        if(this.searchInput === '' && this.gamesTemp.length) {
+          this.games = this.gamesTemp
+        }
+
+        if(!this.gamesTemp.length) {
+          this.gamesTemp = this.games
+        }
+
+        this.games = Helpers.filterName(this.searchInput, this.gamesTemp)
       }
     },
     watch: {
       searchInput() {
-        console.log(this.searchInput)
+        this.sortByWord()
       }
     }
   }
