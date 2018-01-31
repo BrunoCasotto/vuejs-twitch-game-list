@@ -7,7 +7,7 @@
     "dev": "concurrently \"npm run watch:dev\" \"npm run build:dev\"",
     "watch:dev": "webpack-dev-server --inline --hot --history-api-fallback --config ./webpack/webpack.config.js",
     "build:dev": "webpack --watch --config ./webpack/webpack.config.js",
-    "start": "node index.js",
+    "start": "webpack-dev-server --open --config ./webpack/webpack.config.js",
     "build:prod": "webpack -p --config ./webpack/webpack.config.js",
     "heroku-postbuild": "npm run build:prod",
     "lint:fix": "standard --env mocha --fix",
