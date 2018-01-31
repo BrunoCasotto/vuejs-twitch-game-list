@@ -1,6 +1,6 @@
 <template>
   <div class="col-xs-1 col-sm-6 col-md-4 col-lg-3 game">
-    <div class="game__content">
+    <div @click="goDetails" class="game__content">
       <img class="game__content__image" :src="game.image" alt="">
       <div class="game__content__title">
         <h4 class="game__content__title__text"> {{game.name}}</h4>
@@ -16,14 +16,23 @@
 				type: Object,
 				default: {}
 			}
+    },
+    methods: {
+      goDetails(game) {
+        this.$store.dispatch('updateGame', this.game)
+        this.$router.push('/details')
+      }
     }
   }
 </script>
 <style lang="sass" scoped>
   @import '~_sass/config';
+  @import '~_sass/animations';
+
   .game {
     padding: 10px;
     max-width: 33.333%;
+    animation: grown .5s ease-out;
     @media screen and(min-width: $screen-md) {
       cursor: pointer;
     }

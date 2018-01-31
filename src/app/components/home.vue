@@ -99,7 +99,6 @@
 
         }).catch((error) => {
           this.toggleLoader();
-          console.log(error)
         })
       },
       initObserveScroll() {

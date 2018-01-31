@@ -15,3 +15,13 @@
   0% { background-color: white; }
   100% { background-color: gray;}
 }
+
+@keyframes grown {
+  0% {
+      transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

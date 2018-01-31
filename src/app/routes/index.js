@@ -4,6 +4,8 @@ import Router from 'vue-router'
 
 import Home from '_components/home.vue'
 
+import Details from '_components/details.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -14,8 +16,8 @@ export default new Router({
       component: Home
     },
       {
-      path: '/component2',
-      component: Home
+      path: '/details',
+      component: Details
     }
   ]
 })

@@ -12,7 +12,8 @@ export default new class Normalize {
           image: item.game.box.large,
           viewers: item.viewers,
           channels: item.channels,
-          popularity: item.game.popularity
+          popularity: item.game.popularity,
+          _id: item.game._id
         }
       })
       
