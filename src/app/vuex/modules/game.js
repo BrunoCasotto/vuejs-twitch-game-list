@@ -1,14 +1,14 @@
 export default {
-  state : {
+  state: {
     data: {}
   },
-  mutations : {
+  mutations: {
     updateGame (state, data) {
       state.data = data
     }
   },
-  actions : {
-    updateGame(context, data) {
+  actions: {
+    updateGame (context, data) {
       context.commit('updateGame', data)
     }
   }

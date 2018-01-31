@@ -9,6 +9,6 @@ import store from './vuex/store'
 import router from '_routes'
 
 const app = new Vue({
-    router,
-    store
+  router,
+  store
 }).$mount('#app')

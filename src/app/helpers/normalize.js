@@ -4,7 +4,7 @@ export default new class Normalize {
    * @param Array - Games Array
    * Normalize the games array
    */
-  normalizeGameArray(games = []) {
+  normalizeGameArray (games = []) {
     try {
       return games.map(item => {
         return {
@@ -16,10 +16,9 @@ export default new class Normalize {
           _id: item.game._id
         }
       })
-      
     } catch (error) {
       console.log(error)
       return []
     }
   }
-} 
+}()

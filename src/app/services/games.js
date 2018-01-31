@@ -10,21 +10,19 @@ import {SIZE, SCREEN, LIMIT} from '_helpers/constants'
 
 import Helpers from '_helpers/helpers'
 
-
 export default new class GamesService {
-  
   /**
    * On constructor the view items limit is defined
    */
-  constructor() {
+  constructor () {
     let screenSize = Helpers.getScreenSize()
     this.limit = LIMIT[screenSize]
   }
 
   /**
-   * @return Object of top games list 
+   * @return Object of top games list
    */
-  getList (offset=0) {
+  getList (offset = 0) {
     return axios({
       url: `${API_URL}`,
       method: 'get',
@@ -37,5 +35,4 @@ export default new class GamesService {
       }
     })
   }
-
 }()

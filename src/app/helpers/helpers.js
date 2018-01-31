@@ -1,17 +1,16 @@
 import {SIZE, SCREEN} from '_helpers/constants'
 
 export default new class Helpers {
-
   /**
    * @return {String} - The labe of screen size is showing
    */
-  getScreenSize() {
+  getScreenSize () {
     let screenWidth = window.innerWidth
-    let size;
+    let size
 
-    if(screenWidth < SCREEN.SMALL) {
+    if (screenWidth < SCREEN.SMALL) {
       size = SIZE.SMALL
-    } else if(screenWidth > SCREEN.SMALL && screenWidth < SCREEN.MEDIUM) {
+    } else if (screenWidth > SCREEN.SMALL && screenWidth < SCREEN.MEDIUM) {
       size = SIZE.MEDIUM
     } else {
       size = SIZE.LARGE
@@ -25,15 +24,14 @@ export default new class Helpers {
    * @param {Object} word - The word to search into the array by item name
    * @param {Array} list - List of games to search
    */
-  filterName(word, list) {
+  filterName (word, list) {
     try {
-     return list.filter((item) => {
-      let regex = new RegExp( `\\${word}`, 'g');
-      return item.name.match(regex)
-     })
-
+      return list.filter((item) => {
+        let regex = new RegExp(`\\${word}`, 'g')
+        return item.name.match(regex)
+      })
     } catch (error) {
       return list
     }
   }
-} 
+}()
