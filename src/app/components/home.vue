@@ -36,6 +36,7 @@
 </template>
 <script>
   import GamesService from '_services/games.js'
+  import Normalize from '_helpers/normalize.js'
   import Grid from '_components/grid.vue'
 
   export default {
@@ -47,25 +48,19 @@
       }
     },
     mounted() {
-      /**
-       * to fetch the games list on component init
-       */
       this.fetchGamesList()
     },
     components: {
       Grid
     },
     methods: {
-      /**
-       * Method to fetch the games list by games service
-       */
       fetchGamesList() {
         GamesService.getList()
         .then((result) => {
           if(result.data) {
-            console.log(result.data.top)
-            this.games = result.data.top
+            this.games = Normalize.normalizeGameArray(result.data.top)
           }
+
         }).catch((error) => {
           console.log(error)
         })

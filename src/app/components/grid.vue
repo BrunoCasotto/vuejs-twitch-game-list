@@ -1,10 +1,10 @@
 <template>
   <section class="row grid">
     <game
-      v-for="item in games"
-      v-bind:todo="item"
-      v-bind:key="item.game._id"
-      :game="item.game"
+      v-for="game in games"
+      v-bind:todo="game"
+      v-bind:key="game._id"
+      :game="game"
     ></game>
   </section>
 </template>

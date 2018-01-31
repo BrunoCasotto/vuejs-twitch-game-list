@@ -1,7 +1,7 @@
 <template>
   <div class="col-xs-1 col-sm-6 col-md-4 col-lg-3 game">
     <div class="game__content">
-      <img class="game__content__image" :src="game.box.medium" alt="">
+      <img class="game__content__image" :src="game.image" alt="">
       <div class="game__content__title">
         <h4 class="game__content__title__text"> {{game.name}}</h4>
       </div>
