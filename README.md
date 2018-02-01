@@ -1,5 +1,5 @@
 # Games list sample
-A simple product list and cart.
+A simple games list and filter.
 
 ## Development mode
 ```
