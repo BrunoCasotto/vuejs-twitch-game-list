@@ -9,7 +9,7 @@ $ npm install
 $ npm run dev
 ```
 
-## To minified files
+## To minify files
 ```
 $ npm run build:prod
 ```
