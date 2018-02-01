@@ -12,10 +12,12 @@
   export default {
     name: 'Game',
     props: {
-			game: {
-				type: Object,
-				default: {}
-			}
+      game: {
+        type: Object,
+        default() {
+          return {}
+        }
+      }
     },
     methods: {
       goDetails(game) {

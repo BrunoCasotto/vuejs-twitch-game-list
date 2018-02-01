@@ -47,6 +47,7 @@
   import Helpers from '_helpers/helpers.js'
   import Grid from '_components/grid.vue'
   import Loader from '_components/loader.vue'
+  import store from '_vuex/store'
 
   export default {
     name: 'Home',
@@ -54,9 +55,7 @@
       return {
         searchInput: '',
         offset: 0,
-        perView: 10,
-        loader: false,
-        activeFilter: null
+        loader: false
       }
     },
     mounted() {
@@ -142,13 +141,13 @@
     },
     computed: {
       searchInputState: function () {
-       return this.$store.state.Search.data
+       return store.state.Search.data
       },
       games: function () {
-       return this.$store.state.Game.list
+       return store.state.Game.list
       },
       gamesTemp: function () {
-       return this.$store.state.Game.temp
+       return store.state.Game.temp
       }
     }
   }

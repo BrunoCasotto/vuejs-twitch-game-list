@@ -19,10 +19,12 @@
       }
     },
     props: {
-			games: {
-				type: Array,
-				default: []
-			}
+      games: {
+        type: Array,
+        default() {
+          return []
+        }
+      }
     },
     components: {
       Game

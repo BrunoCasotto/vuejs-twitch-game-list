@@ -10,7 +10,7 @@
     "start": "webpack-dev-server --open --config ./webpack/webpack.config.js --port 80",
     "build:prod": "webpack --config ./webpack/webpack.prod.js",
     "lint:fix": "standard --env mocha --fix",
-    "test": "mocha-webpack test --recursive --require test/.setup.js"
+    "test": "mocha-webpack test --webpack-config webpack/webpack.dev.js --recursive --require test/.setup.js"
   },
   "engines": {
     "node": "~6.0.0",

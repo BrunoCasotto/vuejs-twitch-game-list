@@ -16,12 +16,13 @@
 </template>
 <script>
   import GamesService from '_services/games.js'
+  import store from '_vuex/store'
 
   export default {
     name: 'Details',
     computed: {
       game: function () {
-       return this.$store.state.Game.data
+       return store.state.Game.data
       }
     },
     methods: {
