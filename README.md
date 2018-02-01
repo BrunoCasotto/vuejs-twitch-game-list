@@ -1,4 +1,4 @@
-# games_list_sample
+# Games list sample
 A simple product list and cart.
 
 ## Development mode
@@ -13,5 +13,11 @@ $ npm run dev
 ```
 $ npm run build:prod
 ```
+
+## To run tests
+```
+$ npm run test
+```
+
 ## License
 MIT
