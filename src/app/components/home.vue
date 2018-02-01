@@ -1,5 +1,8 @@
 <template>
   <div class="container-fluid home">
+  <div v-show="error" class="alert alert-danger home__error-message" role="alert">
+    {{errorMessage}}
+  </div>
   <section class="row no-gutters input-group mb-3 home__search">
     <input
       type="text"
@@ -55,7 +58,10 @@
       return {
         searchInput: '',
         offset: 0,
-        loader: false
+        loader: false,
+        fetching: false,
+        error: false,
+        errorMessage: ''
       }
     },
     mounted() {
@@ -92,20 +98,25 @@
 
         }).catch((error) => {
           this.toggleLoader();
+          this.errorHandle('Erro ao atualizar, verifique sua conexão com a internet.')
         })
       },
       incrementGamesList() {
         this.toggleLoader();
+        this.fetching = true;
         GamesService.getList(this.games.length)
         .then((result) => {
           if(result.data) {
             this.toggleLoader();
+            this.fetching = false;
             let newGames = Normalize.normalizeGameArray(result.data.top)
             this.$store.dispatch('updateGameList', Array.prototype.concat(this.games, newGames))
           }
 
         }).catch((error) => {
           this.toggleLoader();
+          this.fetching = false;
+          this.errorHandle('Erro ao atualizar, verifique sua conexão com a internet.')
         })
       },
       initObserveScroll() {
@@ -113,7 +124,8 @@
           let scrolled = document.documentElement.scrollTop
           let endOfPage = document.body.offsetHeight - window.innerHeight
 
-          if (scrolled >= endOfPage) {
+          //call if no fetching data is running
+          if (scrolled >= endOfPage && !this.fetching) {
             this.incrementGamesList()
           }
         })
@@ -131,6 +143,16 @@
         }
 
         this.$store.dispatch('updateGameList', Helpers.filterName(this.searchInput, this.gamesTemp))
+      },
+      errorHandle(message) {
+        this.error = true
+        this.errorMessage = message
+        document.querySelector('.home__error-message')
+          .scrollIntoView({block: "end", behavior: "smooth"})
+
+        setTimeout(() => {
+          this.error = false
+        }, 5000)
       }
     },
     watch: {
